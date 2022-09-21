@@ -139,6 +139,9 @@ def _convert_time(inp_str):
         time_str = time_str[0:26]
     elif len(time_str) == 19:
         time_str += '.'
+    # zero time zone handler
+    elif len(time_str) == 20:
+        time_str = time_str[:-1] + '.'
     time_str = time_str.ljust(26, '0')
     return datetime.fromisoformat(f"{time_str}{utc_offset_str}")
 

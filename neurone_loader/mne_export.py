@@ -211,7 +211,8 @@ class MneExportable(abc.ABC):
                 offset = tstart.strftime('%z')
                 offset = f"{offset[:3]}:{offset[3:5]}"
                 tstart = (tstart - tstart.utcoffset()).replace(tzinfo=timezone.utc)
-                cnt.info['utc_offset'] = offset
+                # mne doesn't allow one to set the utc_offset manually with v1.0.3
+                # cnt.info['utc_offset'] = offset
             cnt.set_meas_date(tstart)
 
         return cnt
